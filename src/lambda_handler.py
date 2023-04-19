@@ -23,12 +23,12 @@ def lambda_handler(event, context):
         all_user_emails, on_call_emails = get_owners_of_entities_emails(
             'service', services)
 
-        google_meet_url = generate_google_meet_link(
-            description=description, severity=severity, emails=on_call_emails
-        )
+        # google_meet_url = generate_google_meet_link(
+        #     description=description, severity=severity, emails=on_call_emails
+        # )
 
         new_channel_id = create_incident_channel_invite_relevant_people(
-            short_id, all_user_emails, on_call_emails, severity, services, google_meet_url)
+            short_id, all_user_emails, on_call_emails, severity, services, "https://meet.google.com/lookup/abc123")
 
         create_entity('incident', {"identifier": f"incident-{short_id}", "title": f"Incident {short_id}", "properties": {
             "slackChannel": f"https://getport.slack.com/archives/{new_channel_id}",

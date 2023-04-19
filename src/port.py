@@ -18,10 +18,10 @@ def get_access_token():
     return token_response.json()['accessToken']
 
 
-def create_entity(blueprint, entity):
+def create_entity(blueprint, entity, run_id):
     access_token = get_access_token()
     response = requests.post(
-        f'{API_URL}/blueprints/{blueprint}/entities',
+        f'{API_URL}/blueprints/{blueprint}/entities?run_id={run_id}',
         headers={'Authorization': f'Bearer {access_token}'},
         json=entity
     )
@@ -32,7 +32,7 @@ def create_entity(blueprint, entity):
 def update_run_status(run_id, status):
     access_token = get_access_token()
     response = requests.patch(
-        f'{API_URL}/blueprints/runs/{run_id}',
+        f'{API_URL}/actions/runs/{run_id}',
         headers={'Authorization': f'Bearer {access_token}'},
         json={'status': status}
     )

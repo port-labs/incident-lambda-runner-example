@@ -20,6 +20,8 @@ def generate_google_meet_link(description, severity, emails):
     creds = service_account.Credentials.from_service_account_info(
         info=json.loads(DECODED_GOOGLE_CREDS_STR), scopes=['https://www.googleapis.com/auth/calendar'])
 
+    creds = creds.with_subject('daniel@getport.io')
+
     print("Got credentials")
     service = build('calendar', 'v3', credentials=creds)
 
@@ -29,12 +31,13 @@ def generate_google_meet_link(description, severity, emails):
 
     print("Got start and end time")
     event = {
+        'calendar': 'primary',
         'summary': f"[{severity}] {description}",
+        'conferenceDataVersion': 1,
         'start': {
             'dateTime': start_time.isoformat(),
             'timeZone': 'Etc/GMT+3',
         },
-        'attendees': [{'email': email} for email in emails],
         'end': {
             'dateTime': end_time.isoformat(),
             'timeZone': 'Etc/GMT+3',
@@ -45,17 +48,21 @@ def generate_google_meet_link(description, severity, emails):
                     'type': 'hangoutsMeet'
                 },
                 'requestId': generate_short_uuid(),
-            }
+            },
         },
     }
+    conference_types = service.calendar().conferenceTypes().list().execute()
 
-    print("Created event")
+    # Print the list of conference types
+    for conference_type in conference_types['conferenceTypes']:
+        print(conference_type)
+    print("Creating event")
 
-    # event = service.events().insert(calendarId='primary', body=event,
-    # conferenceDataVersion=1).execute()
+    event = service.events().insert(calendarId='primary', body=event,
+                                    conferenceDataVersion=1).execute()
 
     print("Inserted event")
+    print(event)
+    meet_link = event['hangoutLink']
 
-    # meet_link = event['hangoutLink']
-
-    return "https://meet.google.com/lookup/"
+    return meet_link
