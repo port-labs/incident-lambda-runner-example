@@ -9,7 +9,7 @@ Before using this function, you must ensure that you have the following:
 - An AWS account with the Lambda service enabled.
 - A Google Cloud Platform account with the Calendar API enabled.
 - A Port account with access to the API.
-- The following blueprints installed in your Port account:
+- The following blueprints are installed in your Port account:
    - `Incident`: This blueprint contains the incident entity and the incident management workflow.
    ```json
     {
