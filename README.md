@@ -1,3 +1,10 @@
+<img align="right" width="100" height="74" src="https://user-images.githubusercontent.com/8277210/183290025-d7b24277-dfb4-4ce1-bece-7fe0ecd5efd4.svg" />
+
+# Incident lambda runner example
+
+[![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://join.slack.com/t/devex-community/shared_invite/zt-1bmf5621e-GGfuJdMPK2D8UN58qL4E_g)
+
+
 # Instructions for using the Incident Management Lambda Function
 
 This Lambda function is designed to automate the creation of an incident and corresponding Slack channel in response to an incident. This function uses the Google Calendar API to generate a Google Meet link for the incident and the Port API to create and update the incident entity in the Port system.
