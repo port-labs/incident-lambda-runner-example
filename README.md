@@ -267,7 +267,7 @@ Before using this function, you must ensure that you have the following:
 ## Setup
 
 1. Clone this repository to your local machine.
-2. Install the required packages listed in the `requirements.txt` file in the `lambda_layer` library - you may use `deploy-layers` helper script to deploy the layers.
+2. Install the required packages listed in the `requirements.txt` file in the `lambda_layer` library - you may use `deploy-layers.sh` helper script to deploy the layers.
 3. Create a new Lambda function in the AWS console. - you may use `deploy-function.sh` helper script to deploy the function.
 4. Adjust the function's timeout to 5 minutes.
 5. Connect the layers to the function.
@@ -276,4 +276,4 @@ Before using this function, you must ensure that you have the following:
    - `GOOGLE_CREDENTIALS_JSON_ENCODED`: This is a base64-encoded string representing the service account JSON file for your Google Cloud Platform project.
    - `PORT_CLIENT_ID`: The Client ID for your Port account.
    - `PORT_CLIENT_SECRET`: The Client Secret for your Port account.
-   - `SLACK_TOKEN`: The API token for your Slack workspace.
+   - `SLACK_TOKEN`: The API token for your Slack workspace. You can get this token by creating a new Slack app.
